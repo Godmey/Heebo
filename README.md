@@ -119,17 +119,7 @@ spawn(function()
     end
 end)
 
-Tab2:AddButton({
-  Name = "Redeem All Code",
-  Callback = function()
-  for _, v in pairs(game:GetService("Players").LocalPlayer.CodesFolder:GetChildren()) do
-    local args = {
-        [1] = v.Name
-    }
-    game:GetService("ReplicatedStorage").CodesRemotes.CodeRedeemed:FireServer(unpack(args))
-    end
-  end
-})
+
 
 local Section = Tab2:AddSection({"Code - โค้ด"})
 
