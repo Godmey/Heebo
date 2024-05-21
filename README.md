@@ -94,6 +94,11 @@ local Toggle1 = Tab1:AddToggle({
   end
 })
 
+function A()
+  game:GetService'VirtualUser':CaptureController()
+game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+end
+
 
 
 spawn(function()
@@ -103,6 +108,7 @@ spawn(function()
                 for i, v in pairs(game:GetService("Workspace").Mon:GetDescendants()) do
                     if v.Name == MonFarm and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health >= 1 then
                         repeat
+                           A()
                             wait()
  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2)
                         until _G.a == false or v.Humanoid.Health <= 0
@@ -113,12 +119,29 @@ spawn(function()
     end
 end)
 
-Tab1:AddButton({
-  Name = "No cooldown",
+Tab2:AddButton({
+  Name = "Redeem All Code",
   Callback = function()
-  hook = hookfunction(wait, function(seconds)
-  return hook()
-  end)
+  for _, v in pairs(game:GetService("Players").LocalPlayer.CodesFolder:GetChildren()) do
+    local args = {
+        [1] = v.Name
+    }
+    game:GetService("ReplicatedStorage").CodesRemotes.CodeRedeemed:FireServer(unpack(args))
+    end
+  end
+})
+
+local Section = Tab2:AddSection({"Code - โค้ด"})
+
+Tab2:AddButton({
+  Name = "Redeem All Code",
+  Callback = function()
+  for _, v in pairs(game:GetService("Players").LocalPlayer.CodesFolder:GetChildren()) do
+    local args = {
+        [1] = v.Name
+    }
+    game:GetService("ReplicatedStorage").CodesRemotes.CodeRedeemed:FireServer(unpack(args))
+    end
   end
 })
 
@@ -226,4 +249,5 @@ local Toggle1 = Tab2:AddToggle({
     end
   end
 })
+
 
