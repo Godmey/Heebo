@@ -227,7 +227,7 @@ local Toggle1 = Tab2:AddToggle({
     while _G.MM do 
       wait()
       if SP then
-        for i = 1, 4 do
+        for i = 1, 100 do
           local args = {
             [1] = SP
           }
